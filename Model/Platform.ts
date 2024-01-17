@@ -13,12 +13,12 @@ description:{
     required:true,
 },
 file:[String],
-author:{type:Schema.Types.ObjectId, ref:'User'},
+author:{type: Schema.Types.ObjectId, ref:'User'},
 },{
     timestamps:true,
 });
 
-const Platform =mongoose.model('platform',platformSchema);
+export const Platform =mongoose.model('platform',platformSchema);
 
-export {Platform};
+
 

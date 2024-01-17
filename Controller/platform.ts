@@ -1,50 +1,51 @@
 import {RequestHandler } from 'express';
 import { User } from '../Model/User';
-import { Platform } from '../Model/Platform';
+import {Platform}  from '../Model/Platform';
 import { valiadationSchemap } from '../Middleware/Validation';
 import jwt from 'jsonwebtoken' ;
 
 //create Platform
 export const createPlatform : RequestHandler =async(req,res)=>{
-    const {Adminid} =req.body;
+    const { platform_name, description, file, Adminid } = req.body;
+
     if(!Adminid) {return res.status(500).send("Admin can only create Data")}
 
-    try{
+   
         let user=await User.findOne({_id:Adminid});
-    }catch(e){
-        res.status(401).send(e);
-    }
+        if(!user){res.status(401).send("Admin not Found");}
     
-    try {
-    let platform =await Platform.findOne({platform_name:req.body.platform_name})
-    if(platform) {return res.status(400).send("Platform already Exists!!")}
-    } catch (error) {
-        res.status(401).send(error);
-    }
-    
-       let user= await User.findById({_id:Adminid});
-    
-    try{
-        try {
-            const Platform_create=new  Platform({
-                platform_name:req.body.platform_name,
-                description:req.body.description,
-                author:user?.name
-            })
-
-           const api_key = jwt.sign({platformId : Platform_create._id,platformAuthor:Platform_create.author},process.env.JWT_PLATFORM_KEY||" ",) ;
-
-            await Platform_create.save();
-
-            return res.status(200).send(`API_KEY=${api_key}SAVE IT`);
-        } catch (error) {
-            res.status(401).send("Error in creating new Post")
-        }
-       
         
-    }catch(err){
-        res.send("Error In Creating PLatform in the Database");
-    }
+   
+    
+    let platform =await Platform.findOne({platform_name})
+    if(platform) {return res.status(400).send("Platform already Exists!!")}
+
+       
+    try{
+        const newPlatform = new Platform({
+            platform_name,
+            description,
+            file,
+            author: user?.name
+          });
+
+         const result= await newPlatform.save();
+
+                  const api_key = jwt.sign({
+            platformId : result._id,
+            platformAuthor:result.author
+        },process.env.JWT_PLATFORM_KEY||" ",) ;
+
+          return res.status(201).json({
+            message: 'Platform created successfully',
+            platform: newPlatform,
+            api_key: api_key
+          });
+    }catch (error) {
+        console.error(error);
+        return res.status(500).send("Error in creating the platform");
+      }
+    
 }
 
 //upload File
@@ -77,8 +78,24 @@ export const readPlatform: RequestHandler=async(req,res)=>{
 
 
 
+
+
+
 //Test Point
 export const test: RequestHandler=async(req,res)=>{
-   const result = await User.deleteOne();
-    res.send(result);
+
+    const {Adminid} =req.body;
+
+    let user= await User.findById({_id:Adminid});
+
+    const Platform_create = new Platform ({
+        platform_name:req.body.platform_name,
+        description:req.body.description,
+        file:req.body.file,
+        author:user?.name
+    })
+   const result = await Platform_create.save();
+
+   res.send(result);
+
 }

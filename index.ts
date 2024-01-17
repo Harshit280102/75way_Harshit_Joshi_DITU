@@ -44,7 +44,11 @@ app.post('/upload',checkAdmin,upload.single('image'), uploadImage,uploadfile)
 app.get('/platforms',checkAdmin,readPlatform);
 app.get('/platforms/userwithapi/:apikey',checkUserAccess,readPlatform) //Users With the api_key can only access the database
 app.post('/upload/userwithapi/:apikey',checkUserAccess,upload.single('image'),uploadImage,uploadfile)
-app.get("/test",test)
+
+
+
+app.post("/test",test)
+app.get("/test",checkAdmin,test)
 
 
 app.get("/",(req:any,res:any)=>{
