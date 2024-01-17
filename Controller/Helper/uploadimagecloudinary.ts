@@ -17,8 +17,7 @@ let uploadImage = async (req:Request, res:Response,next:NextFunction) => {
           console.log(req.file.path);
           
           const result = await cloudinary.uploader.upload(req.file.path);
-          // console.log(result);
-          // res.json({ url: result.secure_url });
+          
           req.body.fileUrl=result.secure_url;
           next();
         } else {
