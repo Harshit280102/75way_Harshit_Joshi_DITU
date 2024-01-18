@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import bodyParser from 'body-parser' ;
 import cors from 'cors' ;
 import cookieParser from 'cookie-parser' ;
-import {registerUser,SignUp,logoutUser}  from './Controller/user';
+import {registerUser,SignIn,logoutUser}  from './Controller/user';
 import {createPlatform} from './Controller/platform';
 import {checkAdmin} from './Middleware/AdminAccess';
 import {checkUserAccess} from './Middleware/UserAccess';
@@ -37,14 +37,15 @@ app.use(bodyParser.json()) ;
 app.use(cookieParser()) ;
 
 
-app.post('/register',registerUser );  //okay Tested
-app.post('/signup',SignUp);           //okay Tested
+app.post('/register',registerUser);  //okay Tested
+
+app.post('/signin',SignIn);           //okay Tested
 app.delete('/logout',logoutUser);     //okay Tested
 app.post('/createPlatform',checkAdmin,createPlatform)    //okay Tested
 app.post('/upload/:name',checkAdmin,upload.single('image'), uploadImage,uploadfile)   //okay Tested
 app.get('/platforms',checkAdmin,readPlatform);               //okay Tested
-app.get('/platforms/userwithapi/:apikey',checkUserAccess,readPlatform) //Users With the api_key can only access the database
-app.post('/upload/userwithapi/:apikey',checkUserAccess,upload.single('image'),uploadImage,uploadfile)
+app.get('/platforms/userwithapi/:apikey',checkUserAccess,readPlatform) //Users With the api_key can only access the database  //okay Tested
+app.post('/upload/userwithapi/:apikey',checkUserAccess,upload.single('image'),uploadImage,uploadfile)               //okay Tested
 
 
 

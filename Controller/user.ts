@@ -17,7 +17,7 @@ export const registerUser : RequestHandler = async (req,res) => {
     
     
     let user=await User.findOne({email:req.body.email});
-    if(user) {return res.status(400).send("User already Registered 🟣")};
+    if(user) {return res.status(400).send("User already Registered ")};
     
     try{
         const User_create=await User.create({
@@ -34,15 +34,15 @@ export const registerUser : RequestHandler = async (req,res) => {
         await User_create.save();
 
         const name:String = req.body.name;
-        console.log(`${name} is Created Into The Database 🟢`);
+        console.log(`${name} is Created Into The Database `);
         res.status(200).json(User_create);
     }catch(e){
-        console.log('Error in Creating User In the Database! 🔴');
+        console.log('Error in Creating User In the Database!');
     }
 }
 
-// User SignUp 
-export const SignUp : RequestHandler = async (req,res,next) => {
+// User SignIn
+export const SignIn : RequestHandler = async (req,res,next) => {
     try{
         const {email,password} = req.body ;
 
