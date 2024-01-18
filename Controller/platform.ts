@@ -7,12 +7,11 @@ import jwt from 'jsonwebtoken' ;
 //create Platform
 export const createPlatform : RequestHandler =async(req,res)=>{
     const mydata :any= req.body;
+    const Adminid =req.Adminid;
 
-    if(!mydata.Adminid) {return res.status(500).send("Admin can only create Data")}
-
-    console.log(mydata);
+    if(!Adminid) {return res.status(500).send("Admin can only create Data")}
    
-        let user=await User.findOne({_id:mydata.Adminid});
+        let user=await User.findOne({_id:Adminid});
         if(!user){res.status(401).send("Admin not Found")}
     
         
@@ -21,14 +20,14 @@ export const createPlatform : RequestHandler =async(req,res)=>{
     let platform =await Platform.findOne({platform_name:mydata.platform_name})
     if(platform) {return res.status(400).send("Platform already Exists!!")}
 
-    console.log('sabh chalra');
-
-
     
-
-       
     try{
-        const newPlatform = new Platform(mydata);
+        const newPlatform = new Platform({
+            platform_name:req.body.platform_name,
+            description:req.body.description,
+            file:req.body.file,
+            author:Adminid
+        });
 
          const result= await newPlatform.save();
 
