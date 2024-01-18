@@ -21,6 +21,7 @@ declare global {
       interface Request {
         userId?: string ;
         Adminid?:string;
+        platform?:string;
       }
     }
   }
@@ -45,7 +46,7 @@ app.post('/createPlatform',checkAdmin,createPlatform)    //okay Tested
 app.post('/upload/:name',checkAdmin,upload.single('image'), uploadImage,uploadfile)   //okay Tested
 app.get('/platforms',checkAdmin,readPlatform);               //okay Tested
 app.get('/platforms/userwithapi/:apikey',checkUserAccess,readPlatform) //Users With the api_key can only access the database  //okay Tested
-app.post('/upload/userwithapi/:apikey',checkUserAccess,upload.single('image'),uploadImage,uploadfile)               //okay Tested
+app.post('/upload/userwithapi/:apikey/:name',checkUserAccess,upload.single('image'),uploadImage,uploadfile)               //okay Tested
 
 
 

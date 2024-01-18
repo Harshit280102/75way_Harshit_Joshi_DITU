@@ -53,14 +53,12 @@ export const uploadfile : RequestHandler =async(req,res)=>{
     const {fileUrl} =req.body;
     const platform_name=req.params.name;
     
-    const Adminid=req.Adminid;
     if(!fileUrl) {return res.status(500).send("Cannot Create File In Cloudinary")};
 
     let platform =await Platform.findOne({platform_name})
     if(!platform) {return res.status(400).send("Platform not present do create it please!!")}
 
-   
-    
+
     try{
         platform.file.push(fileUrl);
 

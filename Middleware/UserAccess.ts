@@ -19,7 +19,7 @@ export const checkUserAccess = async(req: Request, res: Response, next: NextFunc
         if(!user){
             return res.status(500).send("Wrong Api Key");
         }else{
-            req.body.platform =user;
+            // req.body.platform =user;
             next();
         }
     }catch(err){

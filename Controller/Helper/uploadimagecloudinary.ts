@@ -19,7 +19,7 @@ let uploadImage = async (req:Request, res:Response,next:NextFunction) => {
           const result = await cloudinary.uploader.upload(req.file.path);
           
           req.body.fileUrl=result.secure_url;
-
+          
           next();
         } else {
           res.status(400).json({ message: "No file provided" });
