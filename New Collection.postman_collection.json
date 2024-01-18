@@ -1,0 +1,193 @@
+{
+	"info": {
+		"_postman_id": "1f28bf93-00db-4dff-a544-4831c37f9267",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "32341974"
+	},
+	"item": [
+		{
+			"name": "http://localhost:4000/createPlatform",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"platform_name\":\"USER KEY TO ACCESS THIS PLATFORM\",\n    \"description\":\"hdhvsghvdghv\",\n    \"file\":[]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/createPlatform"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Adminid\": \"65a79ac96494906838e66a5f\",\n    \"platform_name\":\"Joshi Bucket Testing\",\n    \"description\":\"hdhjsgfjbhdsjhfhuuuuudbhnjghiuhiouhiuiu\",\n    \"file\":[]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/test"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"email\":\"harshit@gmail.com\",\n    \"password\":\"1234567\"\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/signin"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Harshit01\",\n    \"email\":\"harshit@gmail.com\",\n    \"password\":\"1234567\",\n    \"role\":\"Admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/register"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/logout",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:4000/logout"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/75way/Desktop/Screenshot 2024-01-17 at 4.12.43 AM.png"
+						}
+					]
+				},
+				"url": "http://localhost:4000/upload/Joshi Bucket Testing"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/platforms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:4000/platforms"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/test",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Adminid\": \"65a79ac96494906838e66a5f\",\n    \"platform_name\":\"Joshi Bucket Testing\",\n    \"description\":\"hdhjsgfjbhdsjhfhuuuuudbhnjghiuhiouhiuiu\",\n    \"file\":[]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:4000/test"
+			},
+			"response": []
+		},
+		{
+			"name": "https://res.cloudinary.com/di4jyusxf/image/upload/v1705481615/bkukuervvslj6rkrfccy.jpg",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://res.cloudinary.com/di4jyusxf/image/upload/v1705481615/bkukuervvslj6rkrfccy.jpg"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/75way/Desktop/shelby-murphy-figueroa-MWnRzAoWqoo-unsplash.jpg"
+						}
+					]
+				},
+				"url": "http://localhost:4000/upload"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/upload/userwithapi/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybUlkIjoiNjVhOGMzODk1MjlhNjdiMmNkZTNlNTNhIiwicGxhdGZvcm1BdXRob3IiOiI2NWE4YjIxODk3YTZhZjVmZjViYTBjNWQiLCJpYXQiOjE3MDU1NTg5MjF9.DA9iGdEMNneJlKs9A1PSo7RpkwtOUI8FHRVI_Qq6",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:4000/upload/userwithapi/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybUlkIjoiNjVhOGMzODk1MjlhNjdiMmNkZTNlNTNhIiwicGxhdGZvcm1BdXRob3IiOiI2NWE4YjIxODk3YTZhZjVmZjViYTBjNWQiLCJpYXQiOjE3MDU1NTg5MjF9.DA9iGdEMNneJlKs9A1PSo7RpkwtOUI8FHRVI_Qq6H6U"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4000/upload/userwithapi/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybUlkIjoiNjVhOGMzODk1MjlhNjdiMmNkZTNlNTNhIiwicGxhdGZvcm1BdXRob3IiOiI2NWE4YjIxODk3YTZhZjVmZjViYTBjNWQiLCJpYXQiOjE3MDU1NTg5MjF9.DA9iGdEMNneJlKs9A1PSo7RpkwtOUI8FHRVI_Qq6",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/Users/75way/Desktop/shelby-murphy-figueroa-MWnRzAoWqoo-unsplash.jpg"
+						}
+					]
+				},
+				"url": "http://localhost:4000/upload/userwithapi/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwbGF0Zm9ybUlkIjoiNjVhOGMzODk1MjlhNjdiMmNkZTNlNTNhIiwicGxhdGZvcm1BdXRob3IiOiI2NWE4YjIxODk3YTZhZjVmZjViYTBjNWQiLCJpYXQiOjE3MDU1NTg5MjF9.DA9iGdEMNneJlKs9A1PSo7RpkwtOUI8FHRVI_Qq6H6U/USER KEY TO ACCESS THIS PLATFORM"
+			},
+			"response": []
+		}
+	]
+}
