@@ -6,32 +6,33 @@ import jwt from 'jsonwebtoken' ;
 
 //create Platform
 export const createPlatform : RequestHandler =async(req,res)=>{
-    const { platform_name, description, file, Adminid } = req.body;
+    const mydata :any= req.body;
 
-    if(!Adminid) {return res.status(500).send("Admin can only create Data")}
+    if(!mydata.Adminid) {return res.status(500).send("Admin can only create Data")}
 
+    console.log(mydata);
    
-        let user=await User.findOne({_id:Adminid});
-        if(!user){res.status(401).send("Admin not Found");}
+        let user=await User.findOne({_id:mydata.Adminid});
+        if(!user){res.status(401).send("Admin not Found")}
     
         
    
     
-    let platform =await Platform.findOne({platform_name})
+    let platform =await Platform.findOne({platform_name:mydata.platform_name})
     if(platform) {return res.status(400).send("Platform already Exists!!")}
+
+    console.log('sabh chalra');
+
+
+    
 
        
     try{
-        const newPlatform = new Platform({
-            platform_name,
-            description,
-            file,
-            author: user?.name
-          });
+        const newPlatform = new Platform(mydata);
 
          const result= await newPlatform.save();
 
-                  const api_key = jwt.sign({
+            const api_key = jwt.sign({
             platformId : result._id,
             platformAuthor:result.author
         },process.env.JWT_PLATFORM_KEY||" ",) ;
@@ -50,11 +51,16 @@ export const createPlatform : RequestHandler =async(req,res)=>{
 
 //upload File
 export const uploadfile : RequestHandler =async(req,res)=>{
-    const {fileUrl,Adminid} =req.body;
+    const {fileUrl} =req.body;
+    const platform_name=req.params.name;
+    
+    const Adminid=req.Adminid;
     if(!fileUrl) {return res.status(500).send("Cannot Create File In Cloudinary")};
 
-    let platform =await Platform.findOne({platform_name:req.body.platform_name})
+    let platform =await Platform.findOne({platform_name})
     if(!platform) {return res.status(400).send("Platform not present do create it please!!")}
+
+   
     
     try{
         platform.file.push(fileUrl);

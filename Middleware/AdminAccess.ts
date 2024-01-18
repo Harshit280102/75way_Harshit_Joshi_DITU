@@ -17,7 +17,7 @@ export const checkAdmin = (req: Request, res: Response, next: NextFunction) => {
     if(decoded.role!=="Admin"){
         res.status(500).send("You are not Admin so you cannot acess the resources")
     }else{
-     req.body.Adminid=decoded.userId;
+     req.Adminid=decoded.userId;
     next();
     }
    

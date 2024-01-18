@@ -20,6 +20,7 @@ declare global {
     namespace Express {
       interface Request {
         userId?: string ;
+        Adminid?:string;
       }
     }
   }
@@ -36,11 +37,11 @@ app.use(bodyParser.json()) ;
 app.use(cookieParser()) ;
 
 
-app.post('/register',registerUser );
-app.post('/signup',SignUp);
-app.delete('/logout',logoutUser);
-app.post('/createPlatform',checkAdmin,createPlatform)
-app.post('/upload',checkAdmin,upload.single('image'), uploadImage,uploadfile)
+app.post('/register',registerUser );  //okay Tested
+app.post('/signup',SignUp);           //okay Tested
+app.delete('/logout',logoutUser);     //okay Tested
+app.post('/createPlatform',checkAdmin,createPlatform)    //okay Tested
+app.post('/upload/:name',checkAdmin,upload.single('image'), uploadImage,uploadfile)
 app.get('/platforms',checkAdmin,readPlatform);
 app.get('/platforms/userwithapi/:apikey',checkUserAccess,readPlatform) //Users With the api_key can only access the database
 app.post('/upload/userwithapi/:apikey',checkUserAccess,upload.single('image'),uploadImage,uploadfile)
